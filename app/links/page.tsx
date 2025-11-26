@@ -1,90 +1,95 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaInstagram, FaWhatsapp, FaGlobe } from "react-icons/fa";
 
 export default function LinksPage() {
   return (
-    <main className="min-h-screen bg-[#1a1a1a] flex items-center justify-center px-4 py-10">
-      <div className="w-full max-w-md bg-[#0f0f0f] rounded-3xl border border-white/10 p-8 shadow-2xl">
+    <main className="min-h-screen bg-[#0f0b08] text-[#f1e9de] flex items-center justify-center px-4 py-6">
+      <div className="relative w-full max-w-xl min-h-[780px] rounded-2xl bg-[#0f1a14] shadow-[0_24px_80px_rgba(0,0,0,0.35)] p-8 sm:p-12 pt-20 pb-16 overflow-hidden">
+        <div className="absolute inset-x-0 top-0 h-72">
+          <Image
+            src="/chacara1.jpg"
+            alt="Vista do Recanto do Pexe"
+            fill
+            priority
+            sizes="(max-width: 768px) 100vw, 700px"
+            className="object-cover"
+            style={{ filter: "grayscale(100%)" }}
+          />
+          <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-[#0f1a14] via-[#0f1a14]/85 to-transparent" />
+        </div>
 
-        {/* Imagem de capa */}
-        <div className="flex flex-col items-center mb-6">
-          <div className="w-40 h-40 rounded-full overflow-hidden border-4 border-orange-500 shadow-lg">
+        <div className="relative flex flex-col items-center gap-2 pt-44 sm:pt-48 mb-6 px-2 text-center">
+          <div className="h-28 w-28 sm:h-32 sm:w-32 rounded-full overflow-hidden -mt-20 sm:-mt-24 mb-3">
             <Image
-              src="/chacara.jpg"
-              alt="Recanto Pé Xe"
-              width={300}
-              height={300}
+              src="/chacara1.jpg"
+              alt="Perfil Recanto do Pexe"
+              width={200}
+              height={200}
               className="object-cover w-full h-full"
             />
           </div>
-
-          <h1 className="mt-4 text-2xl font-semibold text-white">
-            Recanto do Pexe
-          </h1>
-          <p className="text-sm text-slate-300">
-            Entre em contato
+          <h1 className="text-2xl sm:text-3xl font-semibold text-[#f3e9dd]">Recanto do Pexe</h1>
+          <p className="text-sm sm:text-base text-[#d4c8b8]">
+            Reservas e valores para fins de semana e feriados
           </p>
         </div>
 
-        {/* Ícones sociais */}
-        <div className="flex justify-center gap-6 mb-8">
+        <div className="flex justify-center gap-4 mb-6">
           <Link
-            href="https://instagram.com/"
+            href="https://www.instagram.com/chacararecantodopexe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"
-            className="text-2xl hover:scale-110 transition"
             aria-label="Instagram"
+            className="text-3xl text-[#f3e9dd] transition hover:-translate-y-0.5 hover:text-[#E4405F]"
           >
-            📸
+            <FaInstagram />
           </Link>
-
           <Link
-            href="https://wa.me/55SEUNUMERO"
+            href="https://wa.me/+553499905425"
             target="_blank"
-            className="text-2xl hover:scale-110 transition"
             aria-label="WhatsApp"
+            className="text-3xl text-[#f3e9dd] transition hover:-translate-y-0.5 hover:text-[#25D366]"
           >
-            💬
+            <FaWhatsapp />
           </Link>
-
           <Link
             href="/"
-            className="text-2xl hover:scale-110 transition"
             aria-label="Nosso Site"
+            className="text-3xl text-[#f3e9dd] transition hover:-translate-y-0.5 hover:text-[#6BB7DB]"
           >
-            🌐
+            <FaGlobe />
           </Link>
         </div>
 
-        {/* Botões principais */}
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col items-center gap-5">
           <Link
-            href="https://wa.me/55SEUNUMERO"
+            href="https://wa.me/+553499905425"
             target="_blank"
-            className="w-full text-center py-3 border border-orange-500 rounded-xl text-orange-400 font-medium hover:bg-orange-500 hover:text-black transition"
+            className="w-full max-w-xl relative flex items-center justify-center py-4 px-6 rounded-xl border border-[#5B8C5A] bg-[#0f0b08] text-[#f1e9de] text-lg font-medium transition hover:bg-[#5B8C5A] hover:text-[#0f0b08] hover:-translate-y-0.5"
           >
+            <FaWhatsapp className="absolute left-6 text-2xl" />
             Fale Conosco
           </Link>
 
           <Link
-            href="https://instagram.com/"
+            href="https://www.instagram.com/chacararecantodopexe?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw=="
             target="_blank"
-            className="w-full text-center py-3 border border-orange-500 rounded-xl text-orange-400 font-medium hover:bg-orange-500 hover:text-black transition"
+            className="w-full max-w-xl relative flex items-center justify-center py-4 px-6 rounded-xl border border-[#5B8C5A] bg-[#0f0b08] text-[#f1e9de] text-lg font-medium transition hover:bg-[#5B8C5A] hover:text-[#0f0b08] hover:-translate-y-0.5"
           >
+            <FaInstagram className="absolute left-6 text-2xl" />
             Instagram
           </Link>
 
           <Link
             href="/"
-            className="w-full text-center py-3 border border-orange-500 rounded-xl text-orange-400 font-medium hover:bg-orange-500 hover:text-black transition"
+            className="w-full max-w-xl relative flex items-center justify-center py-4 px-6 rounded-xl border border-[#5B8C5A] bg-[#0f0b08] text-[#f1e9de] text-lg font-medium transition hover:bg-[#5B8C5A] hover:text-[#0f0b08] hover:-translate-y-0.5"
           >
+            <FaGlobe className="absolute left-6 text-2xl" />
             Nosso Site
           </Link>
         </div>
 
-        {/* Rodapé */}
-        <p className="mt-8 text-center text-[11px] text-slate-500">
-          © {new Date().getFullYear()} Recanto do Pexe
-        </p>
+        
       </div>
     </main>
   );
