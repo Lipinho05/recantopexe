@@ -4,8 +4,8 @@ import { FaInstagram, FaWhatsapp, FaGlobe } from "react-icons/fa";
 
 export default function LinksPage() {
   return (
-    <main className="min-h-screen bg-[#0f0b08] text-[#f1e9de] flex items-center justify-center px-4 py-6">
-      <div className="relative w-full max-w-xl min-h-[780px] rounded-2xl bg-[#0f1a14] shadow-[0_24px_80px_rgba(0,0,0,0.35)] p-8 sm:p-12 pt-20 pb-16 overflow-hidden">
+    <main className="h-screen overflow-hidden bg-[#0f0b08] text-[#f1e9de] flex items-center justify-center">
+      <div className="relative w-full max-w-xl h-[900px] rounded-2xl bg-[#0f1a14] shadow-[0_24px_80px_rgba(0,0,0,0.35)] p-14 pt-20 pb-20 overflow-hidden">
         <div className="absolute inset-x-0 top-0 h-72">
           <Image
             src="/chacara1.jpg"
