@@ -153,8 +153,8 @@ export default function Home() {
 
         <section id="galeria" className="bg-[#0f1a14] text-[#f7f7f5] scroll-mt-28">
           <div className="mx-auto max-w-6xl px-6 py-20 flex flex-col gap-6">
-            <div className="flex items-center justify-between mb-6">
-              <div>
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+              <div className="space-y-1">
                 <p className="text-lg uppercase tracking-[0.35em] text-[#EA5B1B]">Imagens e Videos</p>
                 <h2 className="text-[40px] md:text-[56px] font-semibold text-[#FFFFFF]">Galeria rapida</h2>
               </div>
@@ -164,13 +164,13 @@ export default function Home() {
                   e.preventDefault();
                   setShowAll(true);
                 }}
-                className="text-sm text-[#f7f7f5] px-4 py-2 rounded-full border border-[#5B8C5A] bg-[#0f1a14] hover:bg-[#5B8C5A] hover:text-[#0f1a14] transition"
+                className="w-full sm:w-auto text-center text-sm text-[#f7f7f5] px-4 py-2 rounded-full border border-[#5B8C5A] bg-[#0f1a14] hover:bg-[#5B8C5A] hover:text-[#0f1a14] transition"
               >
                 Ver mais
               </Link>
             </div>
 
-            <div className="grid md:grid-cols-3 gap-4">
+            <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
               {galleryImages.slice(0, 3).map((img, idx) => (
                 <button
                   key={`${idx}-${img}`}
