@@ -256,7 +256,7 @@ export default function Home() {
             >
               X
             </button>
-            <h3 className="text-2xl font-semibold text-[#FFFFFF] mb-4">Todas as imagens</h3>
+            <h3 className="text-2xl font-semibold text-[#FFFFFF] mb-4">Todas as imagens e videos</h3>
             <div
               className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 max-h-[70vh] overflow-y-auto pr-2 bg-[#0f1a14]"
               style={{ scrollbarColor: "#5B8C5A #0f1a14", scrollbarWidth: "thin" }}
