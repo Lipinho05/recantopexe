@@ -2,10 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa";
 
 export default function Home() {
+  const mapHref =
+    "https://www.google.com/maps/place/Recanto+do+Pexe/@-18.7914786,-46.418527,21z/data=!4m6!3m5!1s0x94ae6f95ba4b09cf:0x3b5fb25c7be2c5b0!8m2!3d-18.7915515!4d-46.4186552!16s%2Fg%2F11pd0zvpc2";
+  const mapEmbed = "https://maps.google.com/maps?output=embed&q=-18.7915515,-46.4186552&z=18";
   const [galleryImages, setGalleryImages] = useState<string[]>([
     "https://ejmyabjcspyujjecdquu.supabase.co/storage/v1/object/public/recantopexe/foto1.jpg",
     "https://ejmyabjcspyujjecdquu.supabase.co/storage/v1/object/public/recantopexe/foto2.jpg",
@@ -17,45 +20,61 @@ export default function Home() {
   const [showContacts, setShowContacts] = useState(false);
   const [openMobileMenu, setOpenMobileMenu] = useState(false);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
+  const [scrolled, setScrolled] = useState(false);
 
   const isVideo = (url: string) => /\.(mp4|webm|ogg)$/i.test(url);
 
+  useEffect(() => {
+    const onScroll = () => {
+      const hero = document.getElementById("hero");
+      const threshold = (hero?.offsetHeight ?? 320) - 80;
+      setScrolled(window.scrollY > threshold);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
-    <main className="relative min-h-screen bg-[#0f1a14] text-[#f7f7f5] overflow-hidden">
+    <main className="relative min-h-screen bg-transparent text-[#f7f7f5] overflow-hidden">
       <div className="fixed inset-0 -z-10">
-        <Image src="/chacara.jpg" alt="Vista do recanto" fill priority sizes="100vw" className="object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#0f1a14]/92 via-[#0f1a14]/70 to-[#0f1a14]" />
+        <Image src="/chacara2.jpg" alt="Vista do recanto" fill priority sizes="100vw" className="object-cover" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#0f1a14]/60 via-[#0f1a14]/40 to-[#0f1a14]/80" />
       </div>
 
-      <header className="fixed inset-x-0 top-0 z-20 bg-[#1f3328] text-[#FFFFFF] backdrop-blur shadow-[0_6px_20px_rgba(0,0,0,0.25)]">
+      <header
+        className={`fixed inset-x-0 top-0 z-20 text-[#FFFFFF] transition-colors duration-300 ${
+          scrolled ? "bg-[#1f3328] shadow-[0_6px_20px_rgba(0,0,0,0.25)]" : "bg-transparent backdrop-blur-md"
+        }`}
+      >
         <div className="w-full flex items-center justify-between gap-4 px-6 py-4">
-          <div className="flex items-center gap-3 font-semibold text-lg -ml-6">
+          <Link href="#hero" className="flex items-center gap-3 font-semibold text-lg -ml-6" aria-label="Ir para o topo">
             <div
               className="relative h-14 w-40 overflow-visible"
-              style={{ transform: "translateX(40px)", transformOrigin: "left center" }}
+              style={{ transform: "translateX(5px)", transformOrigin: "left center" }}
             >
               <Image
-                src="/LogoPexe.png"
-                alt="Recanto do Pexe"
+                src="/LogoPeixe.png"
+                alt="Recanto do Peixe"
                 fill
                 className="object-contain scale-250"
                 sizes="160px"
                 priority
               />
             </div>
-          </div>
-          <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-lg font-serif font-semibold text-[#FFFFFF]">
+          </Link>
+          <nav className="hidden md:flex flex-1 items-center justify-center gap-8 text-lg font-semibold text-[#FFFFFF]">
             <Link
               href="#hero"
               className="inline-flex w-[120px] items-center justify-center text-center hover:text-[#EA5B1B] hover:font-bold transition-all duration-200 hover:-translate-y-0.5"
             >
-              Inicio
+              Início
             </Link>
             <Link
               href="#localizacao"
               className="inline-flex w-[120px] items-center justify-center text-center hover:text-[#EA5B1B] hover:font-bold transition-all duration-200 hover:-translate-y-0.5"
             >
-              Localizacao
+              Localização
             </Link>
             <Link
               href="#galeria"
@@ -86,7 +105,7 @@ export default function Home() {
           <div className="md:hidden bg-[#1f3328] border-t border-[#5B8C5A] px-6 pb-4 space-y-3 text-[#FFFFFF]">
             {[
               { href: "#hero", label: "Inicio" },
-              { href: "#localizacao", label: "Localizacao" },
+              { href: "#localizacao", label: "Localização" },
               { href: "#galeria", label: "Imagens" },
               { href: "#contato", label: "Contato" },
             ].map((item) => (
@@ -104,14 +123,14 @@ export default function Home() {
       </header>
 
       <div className="pt-28">
-        <section id="hero" className="bg-[#0f1a14] text-[#f7f7f5] scroll-mt-28">
+        <section id="hero" className="bg-transparent text-[#f7f7f5] scroll-mt-28">
           <div className="mx-auto max-w-6xl px-6 pb-24 grid md:grid-cols-1 gap-10 items-center">
             <div className="space-y-6">
               <h1 className="text-[40px] md:text-[56px] font-semibold leading-tight text-[#FFFFFF]">
-                Informacoes sobre o espaco, reservas e valores para finais de semana e feriados
+                Informações sobre o espaço, reservas e valores para finais de semana e feriados
               </h1>
               <p className="text-base text-[#d8e2dc] max-w-xl">
-                Escolha sua data, veja localizacao e explore as imagens do recanto.
+                Escolha sua data, veja localização e explore as imagens do recanto.
               </p>
               <div className="flex flex-col sm:flex-row gap-3">
                 <Link
@@ -133,20 +152,38 @@ export default function Home() {
         </section>
 
         <section id="localizacao" className="bg-[#FFFFFF] text-[#0f1a14] scroll-mt-28">
-          <div className="mx-auto max-w-6xl px-6 py-20 flex flex-col gap-6">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-lg uppercase tracking-[0.35em] text-[#EA5B1B]">Localizacao</p>
-                <h2 className="text-[40px] md:text-[56px] font-semibold text-[#0f1a14]">Onde ficamos</h2>
-                <p className="text-sm text-[#1f3328] max-w-xl">Abra no Google Maps para rotas e referencias de chegada.</p>
+          <div className="mx-auto max-w-6xl px-6 py-20 flex flex-col gap-8">
+            <div className="grid gap-8 lg:grid-cols-[1.2fr_0.9fr] items-start">
+              <div className="space-y-4">
+                <div className="space-y-2">
+                  <p className="text-lg uppercase tracking-[0.35em] text-[#EA5B1B]">Localização</p>
+                  <h2 className="text-[40px] md:text-[56px] font-semibold text-[#0f1a14]">Onde ficamos</h2>
+                  <p className="text-sm text-[#1f3328] max-w-xl">Abra no Google Maps para rotas e referencias de chegada.</p>
+                </div>
+                <div className="space-y-4 text-sm text-[#1f3328] leading-relaxed">
+                  <p>Veja o ponto no mapa e use o botao "Ver no Mapa" para abrir rotas.</p>
+                  <p>Salve ou compartilhe a localização direto no Google Maps.</p>
+                </div>
+                <Link
+                  href={mapHref}
+                  target="_blank"
+                  className="inline-flex w-full sm:w-fit justify-center text-center px-5 py-3 rounded-full bg-[#6BB7DB] text-[#0f1a14] font-semibold text-sm hover:bg-[#5a9abb] transition"
+                >
+                  Ver no Mapa
+                </Link>
               </div>
-              <Link
-                href="https://maps.app.goo.gl/bPLywh38z8TP21Ag6"
-                target="_blank"
-                className="px-5 py-3 rounded-full bg-[#6BB7DB] text-[#0f1a14] font-semibold text-sm hover:bg-[#5a9abb] transition"
-              >
-                Ver no Mapa
-              </Link>
+              <div className="w-full max-w-md lg:max-w-[420px] overflow-hidden rounded-2xl border border-[#dbe7de] shadow-[0_12px_30px_rgba(0,0,0,0.08)] bg-white justify-self-start lg:justify-self-end">
+                <div className="relative aspect-[4/3]">
+                  <iframe
+                    src={mapEmbed}
+                    title="Mapa - Recanto do Pexe"
+                    loading="lazy"
+                    allowFullScreen
+                    className="absolute inset-0 h-full w-full border-0"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -155,8 +192,8 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-6 py-20 flex flex-col gap-6">
             <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
               <div className="space-y-1">
-                <p className="text-lg uppercase tracking-[0.35em] text-[#EA5B1B]">Imagens e Videos</p>
-                <h2 className="text-[40px] md:text-[56px] font-semibold text-[#FFFFFF]">Galeria rapida</h2>
+                <p className="text-lg uppercase tracking-[0.35em] text-[#EA5B1B]">Imagens e Vídeos</p>
+                <h2 className="text-[40px] md:text-[56px] font-semibold text-[#FFFFFF]">Galeria rápida</h2>
               </div>
               <Link
                 href="#"
@@ -206,7 +243,7 @@ export default function Home() {
             <div>
               <p className="text-lg uppercase tracking-[0.35em] text-[#EA5B1B]">Contato</p>
               <h3 className="text-[40px] md:text-[56px] font-semibold text-[#0f1a14]">Pronto para reservar?</h3>
-              <p className="text-sm text-[#1f3328] max-w-lg">Entre em contato para datas disponiveis, valores e detalhes do espaco.</p>
+              <p className="text-sm text-[#1f3328] max-w-lg">Entre em contato para datas disponiveis, valores e detalhes do espaço.</p>
             </div>
             <div className="flex gap-3">
               <Link
